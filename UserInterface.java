@@ -18,6 +18,8 @@ public class UserInterface {
     public void startUI() throws IOException {
         checkSave();
         Scanner input = new Scanner(System.in);
+        //IF statments check if there are position and apikey files
+        //IF they do not exists program asks to enter api key and position if needed
         if(!APIKey) {
             System.out.println("Enter your key from https://openweathermap.org");
             if(input.hasNextLine()) {
@@ -33,6 +35,8 @@ public class UserInterface {
             z++;
         }
         String uin = "";
+        //While loop with a switch statment to add some sort of UI, 5 selections
+        //Add location, Delete location, Select location, close program, and print all locations
         while(!uin.equals("C")){
             System.out.println("Add, Delete, Select, Close, Print locations (A/D/S/C/P)");
             uin = input.nextLine();
@@ -95,6 +99,7 @@ public class UserInterface {
         input.close();
         Save();
     }
+    //function that checks if the files with api key and locations exists, if exists writes api to var and locations to a list
     private void checkSave() throws FileNotFoundException {
         File API = new File("APIKey.txt");
         File Location = new File("Location.txt");
@@ -115,6 +120,7 @@ public class UserInterface {
             }
         }
     }
+    //function that saves all the changes to a file, only runs when user decides to close teh program via 'C' key.
     private void Save(){
         File API = new File("APIKey.txt");
         File Location = new File("Location.txt");
@@ -159,6 +165,7 @@ public class UserInterface {
             }
         }
     }
+    //Part of the user interface that allows the user to input a city name and select the city from a list of cities.
     private void getLoc() throws MalformedURLException {
         Scanner input2 = new Scanner(System.in);
         String city = "";
